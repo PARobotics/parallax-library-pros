@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#define TASK_DEFAULT_STACK_SIZE 512
 #define YES             1
 #define NO              0
 #define START					  1

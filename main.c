@@ -49,10 +49,12 @@ void initialize(){
   #endif
 
   #if USE_MOVE == 1
-    #if taskGetState(moveTask) == TASK_SUSPENDED
-      taskResume(moveTask);
-    #else
-      //TODO: figure out what goes here
+    //TODO: create the task
+    TaskHandle moveTask = taskCreate(moveTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+
+    taskResume(moveTask);
+
+
   #endif
 
   #if USE_LCD == 1
@@ -68,7 +70,7 @@ void initialize(){
 }
 
 void autonProcedure(){
-  taskSuspend(usercontrol);
+  taskDelete(usercontrol);
 
 	#if USE_LCD == 1
     if (MODE == AUTO_A) autoA();
