@@ -9,6 +9,7 @@
 
 #include "Bin/constants.h"
 #include "Bin/functions.c"
+#include "API.h"
 //#include "../config.c" //You write this file
 
 #ifndef DEBUG
@@ -40,20 +41,18 @@ void initialize(){
     #if DEBUG == 1 || DEBUG_SLEW == 1
       writeDebugStreamLine("Slew task is enabled");
     #endif
-    taskResume(MotorSlewRateTask);
+    TaskHandle MotorSlewRateTask = taskCreate(MotorSlewRateTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+
   #else
     #if DEBUG == 1 || DEBUG_SLEW == 1
       writeDebugStreamLine("Slew task is disabled");
     #endif
-    taskResume(MotorsTask);
+    TaskHandle MotorsTask = taskCreate(MotorsTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+
   #endif
 
   #if USE_MOVE == 1
-    //TODO: create the task
     TaskHandle moveTask = taskCreate(moveTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
-
-    taskResume(moveTask);
-
 
   #endif
 
