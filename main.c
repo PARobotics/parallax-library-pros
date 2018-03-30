@@ -62,9 +62,8 @@ void initialize(){
   preAutonProcedure();
 
 
-  //TODO: select "uart1" or "uart2" as appropriate
-  lcdInit(uart1);
-  lcdClear(uart1);
+  lcdInit(uart2);
+  lcdClear(uart2);
 
 }
 
