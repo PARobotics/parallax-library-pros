@@ -5,6 +5,10 @@
   #define DEBUG_REMOTE 0
 #endif
 
+#ifndef NUM_PR_BUTTONS
+  #define NUM_PR_BUTTONS 0
+#endif
+
 #if USE_PR_BUTTON == 1
 
   #define PUSHED_RELEASED 1
@@ -17,7 +21,7 @@
     int timePushed;
   } PRB_type;
 
-  static PRB_type PRB[NUM_PR_BUTTONS];
+  static PRB_type PRB[NUM_PR_BUTTONS]; //Replace NUM_PR_BUTTONS
 
   void updatePrbStatus(){
     int sv = 0;     // temp variable to hold sensor value
