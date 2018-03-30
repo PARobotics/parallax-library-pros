@@ -1,0 +1,104 @@
+#ifndef LIB_MAIN_C
+#define LIB_MAIN_C
+
+/*
+  MAIN.C
+  Implements and combines other library files
+  *** Include this file ***
+*/
+
+#include "Bin/constants.h"
+#include "Bin/functions.c"
+//#include "../config.c" //You write this file
+
+#ifndef DEBUG
+  #define DEBUG 0
+#endif
+
+#include "bin/sensors.c"
+#include "bin/remote.c"
+#include "bin/slew.c"
+#include "bin/lcd.c"
+#include "bin/move.c"
+
+void initialize(){
+  bStopTasksBetweenModes = false;
+  sensorReset();
+
+  #if USE_PR_BUTTON == 1
+    #if DEBUG == 1 || DEBUG_REMOTE == 1
+      writeDebugStreamLine("Setting up remote buttons");
+    #endif
+    setUpButtons();
+    #if DEBUG == 1 || DEBUG_REMOTE == 1
+      writeDebugStreamLine("Successfully set up remote buttons");
+    #endif
+  #endif
+
+  #if USE_SLEW == 1
+    #if DEBUG == 1 || DEBUG_SLEW == 1
+      writeDebugStreamLine("Slew task is enabled");
+    #endif
+    taskResume(MotorSlewRateTask);
+  #else
+    #if DEBUG == 1 || DEBUG_SLEW == 1
+      writeDebugStreamLine("Slew task is disabled");
+    #endif
+    taskResume(MotorsTask);
+  #endif
+
+  #if USE_MOVE == 1
+    #if taskGetState(moveTask) == TASK_SUSPENDED
+      taskResume(moveTask);
+    #else
+      //TODO: figure out what goes here
+  #endif
+
+  #if USE_LCD == 1
+    lcdSelection();
+  #endif
+
+  preAutonProcedure();
+}
+
+void autonProcedure(){
+  taskSuspend(usercontrol);
+
+	#if USE_LCD == 1
+    if (MODE == AUTO_A) autoA();
+    else if (MODE == AUTO_B) autoB();
+  	else if (MODE == AUTO_C) autoC();
+  	else if (MODE == PRG_SKILL) prgSkills();
+    lcdMessage();
+  #endif
+}
+
+void userControlUpdate(){
+  #if USE_LCD == 1
+    lcdMessage();
+  #endif
+
+  #if USE_PR_BUTTON == 1
+    updatePrbStatus();
+  #endif
+
+  #ifdef BAILOUT_BUTTON
+    if(vexRT[BAILOUT_BUTTON] == 1){
+      #if DEBUG == 1 || DEBUG_REMOTE == 1
+        writeDebugStreamLine("Bailout button pressed");
+      #endif
+
+      for(int i = 0; i < 10; i++) motor[i] = 0;
+      BAILOUT = 1;
+      bailOut();
+    }
+    else
+      BAILOUT = 0;
+  #endif
+
+  userControlProcedure();
+
+  delay(10);
+}
+
+#endif
