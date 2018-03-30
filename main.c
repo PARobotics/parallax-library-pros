@@ -22,6 +22,7 @@
 #include "bin/move.c"
 
 void initialize(){
+
   bStopTasksBetweenModes = false;
   sensorReset();
 
@@ -59,6 +60,12 @@ void initialize(){
   #endif
 
   preAutonProcedure();
+
+
+  //TODO: select "uart1" or "uart2" as appropriate
+  lcdInit(uart1);
+  lcdClear(uart1);
+
 }
 
 void autonProcedure(){
