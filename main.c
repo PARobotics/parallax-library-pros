@@ -9,7 +9,7 @@
 
 #include "Bin/constants.h"
 #include "Bin/functions.c"
-#include "API.h"
+#include "Bin/API.h"
 //#include "../config.c" //You write this file
 
 #ifndef DEBUG
@@ -29,30 +29,30 @@ void initialize(){
 
   #if USE_PR_BUTTON == 1
     #if DEBUG == 1 || DEBUG_REMOTE == 1
-      writeDebugStreamLine("Setting up remote buttons");
+      printf("Setting up remote buttons");
     #endif
     setUpButtons();
     #if DEBUG == 1 || DEBUG_REMOTE == 1
-      writeDebugStreamLine("Successfully set up remote buttons");
+      printf("Successfully set up remote buttons");
     #endif
   #endif
 
   #if USE_SLEW == 1
     #if DEBUG == 1 || DEBUG_SLEW == 1
-      writeDebugStreamLine("Slew task is enabled");
+      printf("Slew task is enabled");
     #endif
-    TaskHandle MotorSlewRateTask = taskCreate(MotorSlewRateTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+    TaskHandle MotorSlewRateTask = taskCreate(MotorSlewRate, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
 
   #else
     #if DEBUG == 1 || DEBUG_SLEW == 1
-      writeDebugStreamLine("Slew task is disabled");
+      printf("Slew task is disabled");
     #endif
-    TaskHandle MotorsTask = taskCreate(MotorsTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+    TaskHandle MotorsTaskHandle = taskCreate(motorsTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
 
   #endif
 
   #if USE_MOVE == 1
-    TaskHandle moveTask = taskCreate(moveTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+    TaskHandle moveTaskHandle = taskCreate(moveTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
 
   #endif
 
@@ -92,7 +92,7 @@ void userControlUpdate(){
   #ifdef BAILOUT_BUTTON
     if(vexRT[BAILOUT_BUTTON] == 1){
       #if DEBUG == 1 || DEBUG_REMOTE == 1
-        writeDebugStreamLine("Bailout button pressed");
+        printf("Bailout button pressed");
       #endif
 
       for(int i = 0; i < 10; i++) motor[i] = 0;
