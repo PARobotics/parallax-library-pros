@@ -90,12 +90,13 @@ void userControlUpdate(){
   #endif
 
   #ifdef BAILOUT_BUTTON
-    if(vexRT[BAILOUT_BUTTON] == 1){
+    if(joystickGetDigital (1, BAILOUT_BUTTON, BAILOUT_BUTTONGROUP)){ //TODO add BAILOUT_BUTTONGROUP
       #if DEBUG == 1 || DEBUG_REMOTE == 1
         printf("Bailout button pressed");
       #endif
 
-      for(int i = 0; i < 10; i++) motor[i] = 0;
+      for(int i = 1; i < 11; i++) motorSet (i, 0);
+
       BAILOUT = 1;
       bailOut();
     }
