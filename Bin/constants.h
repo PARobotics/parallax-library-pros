@@ -1,6 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#define true 1
+#define false 0
 #define TASK_DEFAULT_STACK_SIZE 512
 #define YES             1
 #define NO              0
@@ -53,6 +55,7 @@ char lcdStrMode[ARRAY_MAX];             // lcdStr for Mode
 //Bailout
 int BAILOUT = 0;
 
+int bStopTasksBetweenModes;
 /*
 	CONTROL, SENSORS
 */
