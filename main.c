@@ -22,7 +22,7 @@
 #include "bin/lcd.c"
 #include "bin/move.c"
 
-void initialize(){
+void libinitialize(){ // changed from initialize() to prevent overlap
 
   bStopTasksBetweenModes = false;
   sensorReset();
