@@ -140,6 +140,7 @@ void resetPrButton(int i);
 
 //Bailout
 void bailOut();
+bool isTimedOut(long tstop);
 
 //Competition Procedure
 void libinitialize();
