@@ -19,7 +19,6 @@
     char buttonGroup;
     char button;
 
-    int port;
     int pushed;  // temporary variable to hold that the button has been pushed
     int status;  // 1: yes push and released; 0 no
     int timePushed;
@@ -56,11 +55,10 @@
     }
   }
 
-  void addPrButton(int i, int port, char jt, char bg, char b){
+  void addPrButton(int i, char jt, char bg, char b){
     PRB[i].joystick = jt;
     PRB[i].buttonGroup = bg;
     PRB[i].button = b;
-    PRB[i].port = port;
   }
 
   int getPrButton(int i){
