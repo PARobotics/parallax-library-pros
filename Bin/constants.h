@@ -141,8 +141,12 @@ void resetPrButton(int i);
 //Bailout
 void bailOut();
 
-//Competition Procedure
+// init stuff
 void libinitialize();
+void autonProcedure();
+void userControlUpdate();
+
+//Competition Procedure
 void userControlProcedure();
 void preAutonProcedure();
 
