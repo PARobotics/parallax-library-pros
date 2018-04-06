@@ -1,5 +1,3 @@
-#include <time.h>
-
 #ifndef REMOTE_C
 #define REMOTE_C
 
@@ -58,7 +56,10 @@
     }
   }
 
-  void addPrButton(int i, int port){
+  void addPrButton(int i, int port, char jt, char bg, char b){
+    PRB[i].joystick = jt;
+    PRB[i].buttonGroup = bg;
+    PRB[i].button = b;
     PRB[i].port = port;
   }
 
