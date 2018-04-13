@@ -7,20 +7,20 @@
   *** Include this file ***
 */
 
-#include "Bin/constants.h"
-#include "Bin/functions.c"
-#include "Bin/API.h"
+#include "include/constants.h"
+#include "src/functions.c"
+#include "include/API.h"
 //#include "../config.c" //You write this file
 
 #ifndef DEBUG
   #define DEBUG 0
 #endif
 
-#include "bin/sensors.c"
-#include "bin/remote.c"
-#include "bin/slew.c"
-#include "bin/lcd.c"
-#include "bin/move.c"
+#include "src/sensors.c"
+#include "src/remote.c"
+#include "src/slew.c"
+#include "src/lcd.c"
+#include "src/move.c"
 
 void libinitialize(){ // changed from initialize() to prevent overlap
 
