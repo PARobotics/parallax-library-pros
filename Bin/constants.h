@@ -60,7 +60,6 @@ int bStopTasksBetweenModes;
 	CONTROL, SENSORS
 */
 
-int motorReq[kNumbOfTotalMotors];     //Array to hold requested speed for the motors
 
 // Constants
 #define RPM_393_HS    392      // # ticks per revolution
@@ -82,7 +81,7 @@ typedef struct {
   int tf;
   int speed;
   float scalingFactor;
-  tSensors port;
+  //tSensors port;
 	pid* PID;
 } sensor;
 
@@ -108,15 +107,20 @@ DRIVE drive;
 */
 
 //Slew
+#define kNumbOfTotalMotors 10 // from robotC, set val to 10
 #define MOTOR_NUM kNumbOfTotalMotors
+
+
+int motorReq[kNumbOfTotalMotors];     //Array to hold requested speed for the motors
+
 
 //Sensors
 void sensorReset();
 int getMainBatteryVoltage();
 int getSecondBatteryVoltage();
-void makeLED(tSensors p, int status);
-void initializeSensor(sensor* s, float sF, tSensors p);
-void initializeSensor(sensor* s, float sF, tSensors p, pid PID);
+//void makeLED(tSensors p, int status);
+//void initializeSensor(sensor* s, float sF, tSensors p);
+//void initializeSensor(sensor* s, float sF, tSensors p, pid PID);
 void updateSensorValue(sensor* s);
 int getSensorVCMD(sensor* s, int pe, int se);
 int sensorHold(sensor* s, int target, int v_default, int v_min, int v_max);
