@@ -69,7 +69,6 @@ void libinitialize(){ // changed from initialize() to prevent overlap
 }
 
 void autonProcedure(){
-  taskDelete(usercontrol);
 
 	#if USE_LCD == 1
     if (MODE == AUTO_A) autoA();
