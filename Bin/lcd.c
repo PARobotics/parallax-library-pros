@@ -5,7 +5,7 @@
   LCD.c
   Takes care of LCD Selection and automatically displaying and update messages.
 
-  TODO: Define constants lcdStr1 = {0}, lcdStr2 = {0}, FILE *lcdPort, lcdStrSide,
+  TODO: Define constants lcdStr1 = {0}, lcdStr2 = {0}, lcdStrSide,
         lcdStrMode
   */
 
@@ -38,64 +38,63 @@ static int strcmp(char *a, char *b)
 */
 
   void waitForPress(){
-    while (lcdReadButtons(lcdPort) == 0) {} //If no buttons are pressed
+    while (lcdReadButtons(uart2) == 0) {} //If no buttons are pressed
     wait(5);
   }
 
   void waitForRelease(){
-    while (lcdReadButtons(lcdPort) == 0) {} //If no buttons are pressed
+    while (lcdReadButtons(uart2) == 0) {} //If no buttons are pressed
     wait(5);
   }
 
-  void lcdSelection(FILE *lcdPort) { //Function that handles the side and mode selection during pre auton
-    //FILE *lcdPort is uart1 or uart2
-
+  void lcdSelection() { //Function that handles the side and mode selection during pre auton
+    
     //Clear the LCD
-    lcdClear(lcdPort);
+    lcdClear(uart2);
 
-    lcdSetBacklight(lcdPort, 1);
+    lcdSetBacklight(uart2, 1);
 
     //Display filler text
 
     strcpy(lcdStr1, "Select Side:");
     strcpy(lcdStr2, "starting ...");
-    lcdPrint(lcdPort, 1, lcdStr1);
-    lcdPrint(lcdPort, 2, lcdStr2);
+    lcdPrint(uart2, 1, lcdStr1);
+    lcdPrint(uart2, 2, lcdStr2);
 
-    lcdSideSelection(lcdPort);
+    lcdSideSelection(uart2);
 
     strcpy(lcdStr2, "wait for MODE selection ...");
-    lcdPrint(lcdPort, 2, lcdStr2)
+    lcdPrint(uart2, 2, lcdStr2)
 
     delay(250);
 
-    lcdModeSelection(lcdPort);
-    lcdSetBacklight(lcdPort, 0);
+    lcdModeSelection(uart2);
+    lcdSetBacklight(uart2, 0);
   }
 
-  void lcdSideSelection(FILE *lcdPort){
+  void lcdSideSelection(){
     char *lcdLeftStr = "LEFT < RIGHT";
     char *lcdRightStr = "LEFT > RIGHT";
 
     //Cycle through sides until the center is pressed
     SIDE = LEFT; //Initialize the side
     strcpy(lcdStr2, lcdLeftStr);
-    lcdPrint(lcdPort, 1, lcdStr2);
+    lcdPrint(uart2, 1, lcdStr2);
 
-    while (lcdReadButtons(lcdPort) != 010) { //While center isn't pressed
-      if(lcdReadButtons(lcdPort) == 100) //Check if left button is pressed
+    while (lcdReadButtons(uart2) != 010) { //While center isn't pressed
+      if(lcdReadButtons(uart2) == 100) //Check if left button is pressed
         SIDE = LEFT;
-      else if(lcdReadButtons(lcdPort) == 001) //Check if right button is pressed
+      else if(lcdReadButtons(uart2) == 001) //Check if right button is pressed
         SIDE = RIGHT;
 
       if (strcmp(lcdStr2, lcdLeftStr) == 0 && SIDE == RIGHT) {
         //If the right button is pressed but the LCD indicates left text
         strcpy(lcdStr2, lcdRightStr);
-        lcdPrint(lcdPort, 1, lcdStr2);
+        lcdPrint(uart2, 1, lcdStr2);
       } else if (strcmp(lcdStr2, lcdRightStr) == 0 && SIDE == LEFT) {
         //If the left button is pressed but the LCD indicates right text
         strcpy(lcdStr2, lcdLeftStr);
-        lcdPrint(lcdPort, 1, lcdStr2);
+        lcdPrint(uart2, 1, lcdStr2);
       }
       delay(5);
     }
@@ -104,14 +103,14 @@ static int strcmp(char *a, char *b)
     if (SIDE == LEFT) strcpy(lcdStrSide, "L");
   }
 
-  void lcdModeSelection(FILE * lcdPort){
+  void lcdModeSelection(uart2){
     MODE = AUTO_A;
 
     strcpy(lcdStr1, "Select Mode:");
-    lcdPrint(lcdPort, 1, lcdStr1);
+    lcdPrint(uart2, 1, lcdStr1);
 
     //While not selected:
-    while (lcdReadButtons(lcdPort) != 010) { //While center isn't pressed
+    while (lcdReadButtons(uart2) != 010) { //While center isn't pressed
       //Cycle:
       if (MODE < 0) MODE = 6;
       if (MODE > 5) MODE = 0;
@@ -128,30 +127,30 @@ static int strcmp(char *a, char *b)
       strcat(lcdStrSideMode, lcdStrMode);
 
       //Allow switching between modes
-      lcdPrint(lcdPort, 1, lcdStrSideMode);
+      lcdPrint(uart2, 1, lcdStrSideMode);
 
       waitForPress();
-      if (lcdReadButtons(lcdPort) == 100){ //Left button
+      if (lcdReadButtons(uart2) == 100){ //Left button
         waitForRelease();
         MODE--;
       }
 
-      if (lcdReadButtons(lcdPort) == 001){ //Right button
+      if (lcdReadButtons(uart2) == 001){ //Right button
         waitForRelease();
         MODE++;
       }
     }
 
     lcdGenerateMessage(); //Defined in config.c
-    lcdPrint(lcdPort, 1, lcdStr1);
-    lcdPrint(lcdPort, 2, lcdStr2);
+    lcdPrint(uart2, 1, lcdStr1);
+    lcdPrint(uart2, 2, lcdStr2);
   }
 
   void lcdMessage(){
     lcdGenerateMessage(); //Defined in config.c
 
-    lcdPrint(lcdPort, 1, lcdStr1);
-    lcdPrint(lcdPort, 2, lcdStr2);
+    lcdPrint(uart2, 1, lcdStr1);
+    lcdPrint(uart2, 2, lcdStr2);
   }
 
 #endif
