@@ -5,7 +5,7 @@
   LCD.c
   Takes care of LCD Selection and automatically displaying and update messages.
 
-  TODO: Define constants lcdStr1 = {0}, lcdStr2 = {0}, FILE *uart2, lcdStrSide,
+  TODO: Define constants lcdStr1 = {0}, lcdStr2 = {0}, lcdStrSide,
         lcdStrMode
   */
 
@@ -48,8 +48,7 @@ static int strcmp(char *a, char *b)
   }
 
   void lcdSelection() { //Function that handles the side and mode selection during pre auton
-    //FILE *uart2 is uart1 or uart2
-
+    
     //Clear the LCD
     lcdClear(uart2);
 
@@ -104,7 +103,7 @@ static int strcmp(char *a, char *b)
     if (SIDE == LEFT) strcpy(lcdStrSide, "L");
   }
 
-  void lcdModeSelection(FILE * uart2){
+  void lcdModeSelection(uart2){
     MODE = AUTO_A;
 
     strcpy(lcdStr1, "Select Mode:");
