@@ -13,6 +13,7 @@
 
   #define PUSHED_RELEASED 1
   #define LONG_HELD 2
+  #define DOUBLE_PRESS_TIME 300
 
   typedef struct{
     char joystick;
@@ -22,6 +23,7 @@
     int pushed;  // temporary variable to hold that the button has been pushed
     int status;  // 1: yes push and released; 0 no
     int timePushed;
+    int lastTimePushed;
   } PRB_type;
 
   static PRB_type PRB[NUM_PR_BUTTONS];
@@ -36,7 +38,7 @@
       	if(PRB[i].pushed == 0) PRB[i].timePushed = millis(); //TODO Where is time1[T1] defined
         PRB[i].pushed = 1;
       }
-      // Alreay pushed and now released
+      // Already pushed and now released
       if (sv == 0 && PRB[i].pushed == 1){
         PRB[i].pushed = 0;
         if(millis() - PRB[i].timePushed >= 1000){
