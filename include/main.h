@@ -1,1 +1,2 @@
-void autonProcedure();
+void autonProcedure(void);
+void userControlUpdate(void);

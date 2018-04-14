@@ -124,7 +124,8 @@ int getSecondBatteryVoltage();
 void updateSensorValue(sensor* s);
 int getSensorVCMD(sensor* s, int pe, int se);
 int sensorHold(sensor* s, int target, int v_default, int v_min, int v_max);
-int sensorHold(sensor* s, int target, int v_default);
+//TODO: figure out how to do overriding in c
+//int sensorHold(sensor* s, int target, int v_default);
 int sensorPControl(sensor* s, int target);
 int sensorPDControl(sensor* s, int to_target, int v_target);
 
