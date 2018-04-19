@@ -7,8 +7,9 @@
   *** Include this file ***
 */
 
+#include "include/main.h"
 #include "include/constants.h"
-#include "src/functions.c"
+//#include "src/functions.c"
 #include "include/API.h"
 //#include "../config.c" //You write this file
 
@@ -41,13 +42,15 @@ void libinitialize(){ // changed from initialize() to prevent overlap
     #if DEBUG == 1 || DEBUG_SLEW == 1
       printf("Slew task is enabled");
     #endif
-    TaskHandle MotorSlewRateTask = taskCreate(MotorSlewRate, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+    //TODO: reinstate this once slew is done
+    //TaskHandle MotorSlewRateTask = taskCreate(MotorSlewRate, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
 
   #else
     #if DEBUG == 1 || DEBUG_SLEW == 1
       printf("Slew task is disabled");
     #endif
-    TaskHandle MotorsTaskHandle = taskCreate(motorsTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+    //TODO: reinstate this once slew is done
+    //TaskHandle MotorsTaskHandle = taskCreate(motorsTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
 
   #endif
 

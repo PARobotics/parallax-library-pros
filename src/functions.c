@@ -1,7 +1,7 @@
-#ifndef FUNCTION_C
-#define FUNCTION_C
+#ifndef FUNCTIONS_C
+#define FUNCTIONS_C
 
-#include "../include/API.H"
+#include "../include/API.h"
 
 /*
   Functions.c
@@ -15,7 +15,7 @@
 #define BOUND(A,AMIN,AMAX) MIN(AMAX,MAX(A,AMIN))
 
 // ** Exit logic **
-bool isTimedOut(unsigned long tstop){ // Check if timed out
+int isTimedOut(unsigned long tstop){ // Check if timed out
   return millis() >= tstop;
 }
 

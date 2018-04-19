@@ -1,6 +1,10 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+extern void autonProcedure(void);
+void userControlUpdate(void);
+
+
 #define true 1
 #define false 0
 #define TASK_DEFAULT_STACK_SIZE 512
@@ -40,8 +44,12 @@
 #define ARRAY_MAX 25
 
 // LCD
-int MODE = AUTO_A;
-int SIDE = LEFT;         // Blue or Red side that is selected
+extern int MODE;
+extern int SIDE;
+//int MODE = AUTO_A;
+//int SIDE = LEFT;         // Blue or Red side that is selected
+//#define MODE AUTO_A
+//#define SIDE LEFT
 
 char lcdStr1[ARRAY_MAX];                // hold the 16 character string for LCD line 1
 char lcdStr2[ARRAY_MAX];                // hold the 16 character string for LCD line 2
@@ -53,7 +61,8 @@ char lcdStrMode[ARRAY_MAX];             // lcdStr for Mode
 #define RIGHTBUTTON    4
 
 //Bailout
-int BAILOUT = 0;
+extern int BAILOUT;
+//int BAILOUT = 0;
 
 int bStopTasksBetweenModes;
 /*
@@ -87,7 +96,8 @@ typedef struct {
 
 //Motor Monitor
 #define M_PI 3.14159265358979323846
-int MOVE_MONITOR = STOP;
+extern int MOVE_MONITOR;
+//int MOVE_MONITOR = STOP;
 
 typedef struct{ //Structure holding all details fpor the drive train
 	int x;
