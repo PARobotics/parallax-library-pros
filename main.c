@@ -7,7 +7,7 @@
   *** Include this file ***
 */
 
-#include "include/main.h"
+//#include "include/main.h"
 #include "include/constants.h"
 //#include "src/functions.c"
 #include "include/API.h"
@@ -26,7 +26,7 @@
 void libinitialize(){ // changed from initialize() to prevent overlap
 
   bStopTasksBetweenModes = false;
-  sensorReset();
+  //sensorReset();
 
   #if USE_PR_BUTTON == 1
     #if DEBUG == 1 || DEBUG_REMOTE == 1
@@ -63,7 +63,7 @@ void libinitialize(){ // changed from initialize() to prevent overlap
     lcdSelection();
   #endif
 
-  preAutonProcedure();
+  //preAutonProcedure();
 
 
   lcdInit(uart2);
@@ -106,7 +106,7 @@ void userControlUpdate(){
       BAILOUT = 0;
   #endif
 
-  userControlProcedure();
+  //userControlProcedure();
 
   delay(10);
 }

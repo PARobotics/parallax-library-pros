@@ -1,8 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-extern void autonProcedure(void);
-void userControlUpdate(void);
+//extern void autonProcedure(void);
+//void userControlUpdate(void);
 
 
 #define true 1
@@ -157,10 +157,15 @@ void resetPrButton(int i);
 void bailOut();
 int isTimedOut(unsigned long tstop);
 
+
+
+
 //Competition Procedure
 void libinitialize();
 void userControlProcedure();
 void preAutonProcedure();
+void autonProcedure(void);
+void userControlUpdate(void);
 
 //Movement
 void move(int V, int H, int X);
