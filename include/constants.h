@@ -40,8 +40,10 @@
 #define ARRAY_MAX 25
 
 // LCD
-int MODE = AUTO_A;
-int SIDE = LEFT;         // Blue or Red side that is selected
+//int MODE = AUTO_A;
+//int SIDE = LEFT;         // Blue or Red side that is selected
+extern int MODE;
+extern int SIDE;         // Blue or Red side that is selected
 
 char lcdStr1[ARRAY_MAX];                // hold the 16 character string for LCD line 1
 char lcdStr2[ARRAY_MAX];                // hold the 16 character string for LCD line 2
@@ -53,7 +55,8 @@ char lcdStrMode[ARRAY_MAX];             // lcdStr for Mode
 #define RIGHTBUTTON    4
 
 //Bailout
-int BAILOUT = 0;
+//int BAILOUT = 0;
+extern int BAILOUT;
 
 /*
 	CONTROL, SENSORS
@@ -88,13 +91,14 @@ int getSecondBatteryVoltage();
 //void makeLED(tSensors p, int status);
 //void initializeSensor(sensor* s, float sF, tSensors p);
 //void initializeSensor(sensor* s, float sF, tSensors p, pid PID);
-void updateSensorValue(sensor* s);
-int getSensorVCMD(sensor* s, int pe, int se);
-int sensorHold(sensor* s, int target, int v_default, int v_min, int v_max);
+//void updateSensorValue(sensor* s);
+//int getSensorVCMD(sensor* s, int pe, int se);
+//int sensorHold(sensor* s, int target, int v_default, int v_min, int v_max);
 //TODO: figure out how to do overriding in c
+//TODO: uncomment all this once sensors are added to lib
 //int sensorHold(sensor* s, int target, int v_default);
-int sensorPControl(sensor* s, int target);
-int sensorPDControl(sensor* s, int to_target, int v_target);
+//int sensorPControl(sensor* s, int target);
+//int sensorPDControl(sensor* s, int to_target, int v_target);
 
 //LCD
 void waitForPress();

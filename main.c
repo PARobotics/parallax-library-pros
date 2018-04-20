@@ -9,7 +9,7 @@
 
 //#include "include/main.h"
 #include "include/constants.h"
-//#include "src/functions.c"
+#include "src/functions.c"
 #include "include/API.h"
 //#include "../config.c" //You write this file
 
