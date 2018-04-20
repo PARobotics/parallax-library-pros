@@ -22,7 +22,7 @@
 #include "src/slew.c"
 #include "src/lcd.c"
 #include "src/move.c"
-#include "structure.c"
+#include "src/structure.c"
 /* // moved to structure.c
 void libinitialize(){ // changed from initialize() to prevent overlap
   #if USE_PR_BUTTON == 1
