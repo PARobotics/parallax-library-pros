@@ -29,10 +29,10 @@ void sensorUpdateVal(&sensor) { // updates just val
 
 }
 void sensorReset() {
-  for(int n = 0; n < 26; n++){
+  for(int n = 1; n < 27; n++){
     digitalWrite(n, false);
   }
   for(int m = 0; m < IME_ADDR_MAX; m++){
-      imeReset(m);
+    imeReset(m);
   }
 }
