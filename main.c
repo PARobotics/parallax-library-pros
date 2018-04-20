@@ -25,8 +25,12 @@
 
 void libinitialize(){ // changed from initialize() to prevent overlap
 
+<<<<<<< HEAD
   bStopTasksBetweenModes = false;
   //sensorReset();
+=======
+  sensorReset();
+>>>>>>> 8ab7516ed25da0fae290ab53729a6e0952b4fa49
 
   #if USE_PR_BUTTON == 1
     #if DEBUG == 1 || DEBUG_REMOTE == 1

@@ -1,10 +1,13 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+<<<<<<< HEAD
 //extern void autonProcedure(void);
 //void userControlUpdate(void);
 
 
+=======
+>>>>>>> 8ab7516ed25da0fae290ab53729a6e0952b4fa49
 #define true 1
 #define false 0
 #define TASK_DEFAULT_STACK_SIZE 512
@@ -44,12 +47,8 @@
 #define ARRAY_MAX 25
 
 // LCD
-extern int MODE;
-extern int SIDE;
-//int MODE = AUTO_A;
-//int SIDE = LEFT;         // Blue or Red side that is selected
-//#define MODE AUTO_A
-//#define SIDE LEFT
+int MODE = AUTO_A;
+int SIDE = LEFT;         // Blue or Red side that is selected
 
 char lcdStr1[ARRAY_MAX];                // hold the 16 character string for LCD line 1
 char lcdStr2[ARRAY_MAX];                // hold the 16 character string for LCD line 2
@@ -61,10 +60,8 @@ char lcdStrMode[ARRAY_MAX];             // lcdStr for Mode
 #define RIGHTBUTTON    4
 
 //Bailout
-extern int BAILOUT;
-//int BAILOUT = 0;
+int BAILOUT = 0;
 
-int bStopTasksBetweenModes;
 /*
 	CONTROL, SENSORS
 */
@@ -75,42 +72,9 @@ int bStopTasksBetweenModes;
 #define RPM_393       627.2
 #define RPM_SE        360
 
-//PID
-typedef struct{
-	float kp;
-	float ki;
-	float kd;
-} pid;
-
-//Sensors
-typedef struct {
-  int valI;
-  int val;
-  int tI;
-  int tf;
-  int speed;
-  float scalingFactor;
-  //tSensors port;
-	pid* PID;
-} sensor;
 
 //Motor Monitor
-#define M_PI 3.14159265358979323846
-extern int MOVE_MONITOR;
-//int MOVE_MONITOR = STOP;
-
-typedef struct{ //Structure holding all details fpor the drive train
-	int x;
-	int y;
-	int r;
-	sensor* left;
-	sensor* right;
-	sensor* gyro;
-	float move[3];
-	float degreesToRadians;
-} DRIVE;
-
-DRIVE drive;
+#define M_PI 3.1415926535897932384626433832795
 
 /*
 	Wrapper Functions
@@ -166,31 +130,5 @@ void userControlProcedure();
 void preAutonProcedure();
 void autonProcedure(void);
 void userControlUpdate(void);
-
-//Movement
-void move(int V, int H, int X);
-void moveVertical(int vol);
-void moveByPID(int dist, int dir, int tlimit);
-void strafeByPID(int dist, int dir, int tlimit);
-void rotateByPID(int ang, int dir, int tlimit);
-void moveStop();
-void moveFwd();
-void moveBkwd();
-void rotate(int vol);
-void strafe(int vol);
-void moveCurve(int level);
-void moveCurveBkwd(int level);
-void moveBy(int dist, int tlimit);
-void strafeBy(int dist, int tlimit);
-void rotateBy(int ang, int tlimit);
-void resetDrive(int xNew, int yNew, int rNew);
-void refreshDrive();
-void initializeDrive(float d2r, sensor* leftS, sensor* rightS, sensor* gyroS);
-int driveGetX();
-int driveGetY();
-int driveGetDegrees();
-float driveGetVerticalMovement();
-float driveGetLateralMovement();
-float driveGetRotationalMovement();
 
 #endif
