@@ -1,9 +1,7 @@
-#ifndef SENSORS_C
-#define SENSORS_C
-
 void* sensorInit() {
 
 }
+
 void sensorUpdate(&sensor) { // updates speed and val
   // speed = (getval - old sensor val) / (get curr time - t)
   // reset val
@@ -30,4 +28,11 @@ void sensorUpdateVal(&sensor) { // updates just val
   }
 
 }
-#endif
+void sensorReset() {
+  for(int n = 0; n < 26; n++){
+    digitalWrite(n, false);
+  }
+  for(int m = 0; m < IME_ADDR_MAX; m++){
+      imeReset(m);
+  }
+}
