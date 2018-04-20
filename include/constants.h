@@ -1,13 +1,6 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-<<<<<<< HEAD
-//extern void autonProcedure(void);
-//void userControlUpdate(void);
-
-
-=======
->>>>>>> 8ab7516ed25da0fae290ab53729a6e0952b4fa49
 #define true 1
 #define false 0
 #define TASK_DEFAULT_STACK_SIZE 512
