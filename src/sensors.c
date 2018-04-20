@@ -11,9 +11,9 @@ void sensorUpdate(&sensor) { // updates speed and val
   // t = getcurr
   int sval;
   if (sensor->analog) {
-    sval = analogReadCalibrated(sensor->port);
+    sval = analogReadCalibrated(sensor->port)*sensor->scalingFactor;
   } else {
-    sval = digitalRead(sensor->port);
+    sval = digitalRead(sensor->port)*sensor->scalingFactor;
   }
   // set speed
   sensor->speed = (sval-sensor->val)/(millis() - sensor->t);
@@ -25,9 +25,9 @@ void sensorUpdate(&sensor) { // updates speed and val
 }
 void sensorUpdateVal(&sensor) { // updates just val
   if (sensor->analog) {
-    sensor->val = analogReadCalibrated(sensor->port);
+    sensor->val = analogReadCalibrated(sensor->port)*sensor->scalingFactor;
   } else {
-    sensor->val = digitalRead(sensor->port);
+    sensor->val = digitalRead(sensor->port)*sensor->scalingFactor;
   }
 
 }
