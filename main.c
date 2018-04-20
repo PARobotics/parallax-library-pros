@@ -25,7 +25,6 @@
 
 void libinitialize(){ // changed from initialize() to prevent overlap
 
-  bStopTasksBetweenModes = false;
   sensorReset();
 
   #if USE_PR_BUTTON == 1
