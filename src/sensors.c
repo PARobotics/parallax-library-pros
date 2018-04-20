@@ -1,3 +1,6 @@
+#ifndef SENSORS_C
+#define SENSORS_C
+
 void* sensorInit() {
 
 }
@@ -36,3 +39,5 @@ void sensorReset() {
     imeReset(m);
   }
 }
+
+#endif
