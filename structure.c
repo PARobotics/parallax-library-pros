@@ -1,29 +1,6 @@
-#ifndef LIB_MAIN_C
-#define LIB_MAIN_C
+#ifndef STRUCTURE_C
+#define STRUCTURE_C
 
-/*
-  MAIN.C
-  Implements and combines other library files
-  *** Include this file ***
-*/
-
-//#include "include/main.h"
-#include "include/constants.h"
-#include "src/functions.c"
-#include "include/API.h"
-//#include "../config.c" //You write this file
-
-#ifndef DEBUG
-  #define DEBUG 0
-#endif
-
-#include "src/sensors.c"
-#include "src/remote.c"
-#include "src/slew.c"
-#include "src/lcd.c"
-#include "src/move.c"
-#include "structure.c"
-/* // moved to structure.c
 void libinitialize(){ // changed from initialize() to prevent overlap
   #if USE_PR_BUTTON == 1
     #if DEBUG == 1 || DEBUG_REMOTE == 1
@@ -106,6 +83,6 @@ void userControlUpdate(){
   //userControlProcedure();
 
   delay(10);
-}*/
+}
 
 #endif
