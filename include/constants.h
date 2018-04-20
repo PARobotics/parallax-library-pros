@@ -84,10 +84,26 @@ extern int BAILOUT;
 int motorReq[kNumbOfTotalMotors];     //Array to hold requested speed for the motors
 
 
+// sensors struct
+typedef struct {
+  short port;    // port number where the sensor is coupled
+  float scalingFactor;      // conversion factor   raw measurement to physical measurements
+  short motor; // motor index
+  int raw;     // raw sensor reading (SensorValue …)
+  int val;        // scaled sensor value
+  int speed;
+  short dt;     // sampling interval
+  short t;
+  short tlast;
+  int analog; // 1 == analog, 0 == digital
+} Sensor;
+
+
 //Sensors
 void sensorReset();
 int getMainBatteryVoltage();
 int getSecondBatteryVoltage();
+void sensorUpdate(&Sensor);
 //void makeLED(tSensors p, int status);
 //void initializeSensor(sensor* s, float sF, tSensors p);
 //void initializeSensor(sensor* s, float sF, tSensors p, pid PID);
@@ -131,19 +147,6 @@ void userControlUpdate(void);
 
 
 
-
-// sensors struct
-typedef struct {
-  short port;    // port number where the sensor is coupled
-  float scalingFactor;      // conversion factor   raw measurement to physical measurements
-  short motor; // motor index
-  int raw;     // raw sensor reading (SensorValue …)
-  int val;        // scaled sensor value
-  int speed;
-  short dt;     // sampling interval
-  short t;
-  short tlast;
-} Sensor;
 
 
 
