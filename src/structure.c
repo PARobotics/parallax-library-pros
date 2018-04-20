@@ -2,6 +2,7 @@
 #define STRUCTURE_C
 
 void libinitialize(){ // changed from initialize() to prevent overlap
+/*
   #if USE_PR_BUTTON == 1
     #if DEBUG == 1 || DEBUG_REMOTE == 1
       printf("Setting up remote buttons");
@@ -42,11 +43,11 @@ void libinitialize(){ // changed from initialize() to prevent overlap
 
   lcdInit(uart2);
   lcdClear(uart2);
-
+*/
 }
 
 void autonProcedure(){
-
+/*
 	#if USE_LCD == 1
     if (MODE == AUTO_A) autoA();
     else if (MODE == AUTO_B) autoB();
@@ -54,9 +55,11 @@ void autonProcedure(){
   	else if (MODE == PRG_SKILL) prgSkills();
     lcdMessage();
   #endif
+  */
 }
 
 void userControlUpdate(){
+/*
   #if USE_LCD == 1
     lcdMessage();
   #endif
@@ -83,6 +86,7 @@ void userControlUpdate(){
   //userControlProcedure();
 
   delay(10);
+  */
 }
 
 #endif

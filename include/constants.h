@@ -128,4 +128,27 @@ void preAutonProcedure();
 void autonProcedure(void);
 void userControlUpdate(void);
 
+
+
+
+
+// sensors struct
+typedef struct {
+  short port;    // port number where the sensor is coupled
+  float scalingFactor;      // conversion factor   raw measurement to physical measurements
+  short motor; // motor index
+  int raw;     // raw sensor reading (SensorValue …)
+  int val;        // scaled sensor value
+  int speed;
+  short dt;     // sampling interval
+  short t;
+  short tlast;
+} Sensor;
+
+
+
+
+
+
+
 #endif
