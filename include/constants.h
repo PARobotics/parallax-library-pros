@@ -139,8 +139,6 @@ int isTimedOut(unsigned long tstop);
 
 // init stuff
 void libinitialize();
-void autonProcedure();
-void userControlUpdate();
 
 //Competition Procedure
 void userControlProcedure();
